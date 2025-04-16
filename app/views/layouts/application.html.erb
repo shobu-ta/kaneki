@@ -2,15 +2,44 @@
 <html>
   <head>
     <title>Kaneki</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
-    <%= yield %>
+    <!-- ヘッダー -->
+    <header>
+      <nav>
+        <ul>
+          <!-- 1. ロゴまたはHOMEボタン -->
+          <li><%= link_to 'Home', root_path, class: 'nav-link' %></li>
+
+          <!-- 2. MENUボタン -->
+          <li><%= link_to 'Menu', menus_path, class: 'nav-link' %></li>
+
+          <!-- 3. 新規登録ボタン -->
+          <li><%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %></li>
+
+          <!-- 4. 今週のmenuボタン -->
+          <li><%= link_to '今週のMenu', weekly_menus_path, class: 'nav-link' %></li>
+
+          <!-- 5. Blogボタン -->
+          <li><%= link_to 'Blog', blogs_path, class: 'nav-link' %></li>
+
+          <!-- 6. ログイン/ログアウトボタン -->
+          <% if user_signed_in? %>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+          <% else %>
+            <li><%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- コンテンツ -->
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
