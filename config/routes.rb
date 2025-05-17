@@ -22,11 +22,13 @@ Rails.application.routes.draw do
 
   # ユーザー専用の機能
   namespace :users do
-    resource :profile, only: [:show, :edit, :update] # プロフィール編集（ユーザー名・アバター画像）
-    resource :account, only: [:edit, :update] do
-      delete 'destroy', to: 'accounts#destroy' # 退会処理
-    end
-
+    # users controller
+    get 'mypage' => "users#show"
+    get 'mypage/edit' => "users#edit"
+    patch 'mypage' => "users#update"
+    delete 'mypage' => "users#destroy"
+    # ----------------------------
+    
     resources :reservations, only: [:index] # 予約一覧
     resources :reviews, only: [:index] # レビュー一覧
   end

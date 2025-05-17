@@ -1,0 +1,30 @@
+<h2>メニュー編集</h2>
+
+<%= form_with model: [:admin, @menu], local: true do |f| %>
+  <div class="field">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price, "価格" %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "商品画像" %>
+    <% if @menu.image.attached? %>
+      <div class="current-image">
+        <p>現在の画像:</p>
+        <%= image_tag @menu.image, class: "menu-image", style: "max-width: 200px; height: auto;" %>
+      </div>
+    <% end %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "メニュー一覧に戻る", admin_menus_path, class: "btn btn-secondary" %>

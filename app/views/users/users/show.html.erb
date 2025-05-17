@@ -5,7 +5,7 @@
     <% if @user.avatar.attached? %>
       <%= image_tag @user.avatar, class: "avatar" %>
     <% else %>
-      <%= image_tag "default-avatar.png", class: "avatar" %>
+      <%= image_tag "default-avatar.jpg", class: "avatar", width: 150, height: 150 %>
     <% end %>
   </div>
 
@@ -16,8 +16,7 @@
   </div>
 
   <div class="actions">
-    <%= link_to "プロフィール編集", edit_users_profile_path, class: "btn btn-primary" %>
-    <%= link_to "会員情報編集", edit_users_account_path, class: "btn btn-warning" %>
+    <%= link_to "会員情報編集", users_mypage_edit_path, class: "btn btn-warning" %>
     <%= link_to "予約一覧", users_reservations_path, class: "btn btn-secondary" %>
     <%= link_to "レビュー一覧", users_reviews_path, class: "btn btn-secondary" %>
   </div>
