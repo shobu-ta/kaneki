@@ -1,2 +1,25 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<h2>会員詳細</h2>
+
+<p><strong>氏名:</strong> <%= @user.name %></p>
+<p><strong>メールアドレス:</strong> <%= @user.email %></p>
+<p><strong>電話番号:</strong> <%= @user.phone_number %></p>
+
+<h3>予約履歴</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>予約日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td>
+          <%= link_to reservation.date.strftime("%Y-%m-%d %H:%M"), admin_reservation_path(reservation), class: 'btn btn-info' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "会員一覧に戻る", admin_users_path, class: "btn btn-secondary" %>

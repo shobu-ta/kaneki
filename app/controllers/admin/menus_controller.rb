@@ -40,7 +40,7 @@ class Admin::MenusController < ApplicationController
     private
 
     def menu_params
-      params.require(:menu).permit(:name, :description, :price, :image)
+      params.require(:menu).permit(:name, :description, :price, :image, :weekly_menu)
     end
   
 end

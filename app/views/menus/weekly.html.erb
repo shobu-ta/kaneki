@@ -1,0 +1,20 @@
+<h2>今週のメニュー</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>価格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @weekly_menus.each do |menu| %>
+      <tr>
+        <td><%= menu.name %></td>
+        <td>¥<%= menu.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "トップページへ戻る", root_path, class: "btn btn-secondary" %>

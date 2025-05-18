@@ -6,4 +6,9 @@ class MenusController < ApplicationController
   def show
     @menu = Menu.find(params[:id])
   end
+
+  def weekly
+    @weekly_menus = Menu.where(weekly_menu: true)
+  end
+
 end

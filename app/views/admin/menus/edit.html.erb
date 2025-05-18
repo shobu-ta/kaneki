@@ -22,6 +22,12 @@
     <%= f.file_field :image %>
   </div>
 
+  <div class="field">
+  <%= f.label :weekly_menu, "今週のメニューに追加" %>
+  <%= f.check_box :weekly_menu %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "更新", class: "btn btn-primary" %>
   </div>

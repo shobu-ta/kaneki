@@ -2,6 +2,7 @@
 
 <%= link_to '新規メニュー追加', new_admin_menu_path, class: "btn btn-primary" %>
 
+<h2>今週のメニュー</h2>
 <table class="table">
   <thead>
     <tr>
@@ -11,7 +12,30 @@
     </tr>
   </thead>
   <tbody>
-    <% @menus.each do |menu| %>
+    <% @menus.where(weekly_menu: true).each do |menu| %>
+      <tr>
+        <td><%= menu.name %></td>
+        <td>¥<%= menu.price %></td>
+        <td>
+          <%= link_to '編集', edit_admin_menu_path(menu), class: 'btn btn-warning' %>
+          <%= link_to '削除', admin_menu_path(menu), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>通常のメニュー</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>価格</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menus.where(weekly_menu: false).each do |menu| %>
       <tr>
         <td><%= menu.name %></td>
         <td>¥<%= menu.price %></td>
