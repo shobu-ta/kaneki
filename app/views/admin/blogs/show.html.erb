@@ -1,0 +1,16 @@
+<h2><%= @blog.title %></h2>
+<p><%= @blog.content %></p>
+
+<h3>添付画像</h3>
+<% if @blog.images.attached? %>
+  <div class="blog-images">
+    <% @blog.images.each do |image| %>
+      <%= image_tag image, style: "max-width: 300px; height: auto;" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>画像はありません</p>
+<% end %>
+
+<%= link_to "ブログ一覧に戻る", admin_blogs_path, class: "btn btn-secondary" %>
+<%= link_to "編集", edit_admin_blog_path(@blog), class: "btn btn-warning" %>

@@ -1,0 +1,20 @@
+<h2>ブログ一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>作成日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= link_to blog.title, blog_path(blog) %></td>
+        <td><%= blog.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "トップページへ戻る", root_path, class: "btn btn-secondary" %>

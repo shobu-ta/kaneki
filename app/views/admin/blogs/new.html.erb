@@ -1,2 +1,24 @@
-<h1>Admin::Blogs#new</h1>
-<p>Find me in app/views/admin/blogs/new.html.erb</p>
+<h2>新規ブログ作成</h2>
+
+<%= form_with model: [:admin, @blog], local: true do |f| %>
+  <div class="field">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "内容" %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :images, "画像を選択（複数可）" %>
+    <%= f.file_field :images, multiple: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "作成", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "ブログ一覧に戻る", admin_blogs_path, class: "btn btn-secondary" %>

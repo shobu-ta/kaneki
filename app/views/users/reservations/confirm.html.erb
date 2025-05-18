@@ -1,0 +1,43 @@
+<h2>予約確認</h2>
+
+<p><strong>氏名:</strong> <%= @name.present? ? @name : "" %></p>
+<p><strong>電話番号:</strong> <%= @phone_number.present? ? @phone_number : "" %></p>
+
+<% if @selected_menus.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @selected_menus.each do |menu, quantity| %>
+        <tr>
+          <td><%= menu.name %></td>
+          <td>¥<%= menu.price %></td>
+          <td><%= quantity %></td>
+          <td>¥<%= menu.price * quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>合計金額: ¥<%= @total_price %></h3>
+
+  <%= form_with model: @reservation, url: users_reservations_path, local: true do |f| %>
+    <%= f.hidden_field :name, value: @name %>
+    <%= f.hidden_field :phone_number, value: @phone_number %>
+    <%= f.hidden_field :menus, value: @selected_menus.to_json %>
+
+    <div class="actions">
+      <%= f.submit "予約確定", class: "btn btn-success", data: { confirm: "ご注文内容にお間違いないでしょうか？" } %>
+    </div>
+  <% end %>
+<% else %>
+  <p>選択された商品がありません。</p>
+<% end %>
+
+<%= link_to "修正する", new_users_reservation_path, class: "btn btn-secondary" %>

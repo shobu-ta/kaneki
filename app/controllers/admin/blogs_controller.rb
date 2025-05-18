@@ -1,8 +1,12 @@
 class Admin::BlogsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc)
+  end
+
+  def show
   end
 
   def new
@@ -19,27 +23,28 @@ class Admin::BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:id])
   end
 
   def update
-    @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
-      redirect_to admin_blogs_path, notice: "ブログを更新しました"
+      redirect_to admin_blog_path(@blog), notice: "ブログを更新しました"
     else
       render :edit
     end
   end
 
   def destroy
-    @blog = Blog.find(params[:id])
     @blog.destroy
     redirect_to admin_blogs_path, notice: "ブログを削除しました"
   end
 
   private
 
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
+
   def blog_params
-    params.require(:blog).permit(:title, :content)
+    params.require(:blog).permit(:title, :content, images: [])
   end
 end
