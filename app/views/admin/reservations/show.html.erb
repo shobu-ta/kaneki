@@ -1,2 +1,33 @@
-<h1>Admin::Reservations#show</h1>
-<p>Find me in app/views/admin/reservations/show.html.erb</p>
+<h2>予約詳細</h2>
+
+<p><strong>ユーザー名:</strong> <%= @reservation.user.name %></p>
+<p><strong>電話番号:</strong> <%= @reservation.user.phone_number %></p>
+<p><strong>予約日時:</strong> <%= @reservation.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+<p><strong>ステータス:</strong> <%= @reservation.status %></p>
+
+<h3>注文内容</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価</th>
+      <th>数量</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservation.reservation_details.each do |detail| %>
+      <tr>
+        <td><%= detail.menu.name %></td>
+        <td>¥<%= detail.price %></td>
+        <td><%= detail.quantity %></td>
+        <td>¥<%= detail.total_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>合計金額: ¥<%= @reservation.reservation_details.sum(&:total_price) %></h3>
+
+<%= link_to "編集", edit_admin_reservation_path(@reservation), class: "btn btn-warning" %>
+<%= link_to "予約一覧へ戻る", admin_reservations_path, class: "btn btn-secondary" %>

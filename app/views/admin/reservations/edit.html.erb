@@ -1,0 +1,14 @@
+<h2>予約情報の編集</h2>
+
+<%= form_with model: @reservation, url: admin_reservation_path(@reservation), local: true do |f| %>
+  <div class="field">
+    <%= f.label :status, "予約ステータス" %>
+    <%= f.select :status, ["受付済", "キャンセル", "お渡し済"], class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", admin_reservations_path, class: "btn btn-secondary" %>

@@ -1,7 +1,7 @@
 <h2>予約確認</h2>
 
-<p><strong>氏名:</strong> <%= @name.present? ? @name : "" %></p>
-<p><strong>電話番号:</strong> <%= @phone_number.present? ? @phone_number : "" %></p>
+<p><strong>氏名:</strong> <%= current_user.name %></p>
+<p><strong>電話番号:</strong> <%= current_user.phone_number %></p>
 
 <% if @selected_menus.present? %>
   <table class="table">
@@ -28,8 +28,6 @@
   <h3>合計金額: ¥<%= @total_price %></h3>
 
   <%= form_with model: @reservation, url: users_reservations_path, local: true do |f| %>
-    <%= f.hidden_field :name, value: @name %>
-    <%= f.hidden_field :phone_number, value: @phone_number %>
     <%= f.hidden_field :menus, value: @selected_menus.to_json %>
 
     <div class="actions">

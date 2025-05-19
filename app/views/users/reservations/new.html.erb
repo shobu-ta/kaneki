@@ -1,17 +1,6 @@
-<h2>予約フォーム</h2>
+<h2>予約フォーム（会員専用）</h2>
 
-<%= form_with model: @reservation, url: users_reservations_confirm_path, local: true do |f| %>
-  <% unless user_signed_in? %>
-    <div class="field">
-      <%= f.label :name, "氏名" %>
-      <%= f.text_field :name, required: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :phone_number, "電話番号" %>
-      <%= f.text_field :phone_number, required: true %>
-    </div>
-  <% end %>
+<%= form_with model: @reservation, url: users_reservations_confirm_path, method: :post, local: true do |f| %>
 
   <h3>予約する商品</h3>
   <% if @weekly_menus.present? %>
