@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2025_05_18_140824) do
     t.integer "menu_id", null: false
     t.integer "quantity"
     t.integer "price"
-    t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_id"], name: "index_reservation_details_on_menu_id"
@@ -83,12 +82,12 @@ ActiveRecord::Schema.define(version: 2025_05_18_140824) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.datetime "date"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "phone_number"
+    t.integer "total_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 

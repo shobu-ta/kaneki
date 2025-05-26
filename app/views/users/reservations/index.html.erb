@@ -21,7 +21,7 @@
             <% end %>
           </td>
           <td><%= reservation.status %></td>
-          <td>¥<%= reservation.reservation_details.sum { |detail| detail.total_price } %></td>
+          <td>¥<%= reservation.reservation_details.sum { |detail| detail.price } %></td>
           <td>
             <%= link_to "詳細", users_reservation_path(reservation), class: "btn btn-info" %>
             <% if reservation.status == "受付済" %>

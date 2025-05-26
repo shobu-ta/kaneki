@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  # 管理者専用の機能（ネームスペースを統一）
+  # 管理者専用
   namespace :admin do
     root 'dashboard#index' # 管理者ダッシュボード
     resources :menus, only: [:index, :new, :create, :edit, :update, :destroy] # 商品管理
@@ -53,4 +53,5 @@ Rails.application.routes.draw do
 
   get 'weekly_menus', to: 'menus#weekly', as: 'weekly_menus' # 今週のMENUページ
   #get 'blogs', to: 'blogs#index', as: 'blogs' # BLOG一覧ページ
+  
 end

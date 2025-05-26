@@ -28,7 +28,17 @@
   <h3>合計金額: ¥<%= @total_price %></h3>
 
   <%= form_with model: @reservation, url: users_reservations_path, local: true do |f| %>
-    <%= f.hidden_field :menus, value: @selected_menus.to_json %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :phone_number %>
+    <%= f.hidden_field :total_price %>
+    <% pp @reservation.reservation_details %>
+    <%= f.fields_for :reservation_details do |reservation_detail| %>
+    <%= reservation_detail.hidden_field :menu_id %>
+    
+    <%= reservation_detail.hidden_field :quantity %>
+    <%= reservation_detail.hidden_field :price %>
+
+  <% end %>
 
     <div class="actions">
       <%= f.submit "予約確定", class: "btn btn-success", data: { confirm: "ご注文内容にお間違いないでしょうか？" } %>

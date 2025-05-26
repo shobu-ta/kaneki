@@ -10,7 +10,7 @@ class Users::ReservationsController < ApplicationController
     @weekly_menus = Menu.where(weekly_menu: true)
     @selected_menus = {}
     @total_price = 0
-
+    
     params[:quantities]&.each do |menu_id, quantity|
       menu = Menu.find(menu_id)
       quantity = quantity.to_i
@@ -24,12 +24,17 @@ class Users::ReservationsController < ApplicationController
     #  会員の氏名・電話番号は `current_user` から取得
     @name = current_user.name
     @phone_number = current_user.phone_number
+    @reservation = Reservation.new(name: @name, phone_number: @phone_number,total_price: @total_price ,status:"予約")
+    @selected_menus.each do |menu, quantity|
+      @reservation.reservation_details.new(menu_id: menu.id,quantity: quantity,price: menu.price)
+    end
   end
 
   def create
-    @reservation = current_user.reservations.new(reservation_params)
-  
+    @reservation = current_user.reservations.new(reservations_params)
+    
     if @reservation.save
+
       flash[:notice] = "予約が完了しました！"
       redirect_to users_reservations_path
     else
@@ -50,5 +55,8 @@ class Users::ReservationsController < ApplicationController
 
   def reservation_params
     params.permit(:name, :phone_number, menus: [])
+  end
+  def reservations_params 
+    params.require(:reservation).permit(:name, :total_price, :phone_number, reservation_details_attributes: [:id, :menu_id, :price, :quantity, :_destroy])
   end
 end
