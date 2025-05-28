@@ -27,7 +27,7 @@ class Admin::BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to admin_blog_path(@blog), notice: "ブログを更新しました"
+      redirect_to admin_blog_path, notice: "ブログを更新しました"
     else
       render :edit
     end

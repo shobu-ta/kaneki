@@ -37,14 +37,18 @@ Rails.application.routes.draw do
     patch 'mypage' => "users#update"
     delete 'mypage' => "users#destroy"
     # ----------------------------
-    
+    resources :reviews, only: [:index]
+
     resources :reservations, only: [:new, :create, :index, :show] do
       collection do
         get :confirm
         post :confirm  
       end
     end  
-    resources :reviews, only: [:index] # レビュー一覧
+    resources :menus, only: [:index, :show] do
+      resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    end
+  
   end
 
   # 固定ページのルーティング

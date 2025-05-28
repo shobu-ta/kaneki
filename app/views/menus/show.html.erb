@@ -1,5 +1,23 @@
 <h1><%= @menu.name %></h1>
 <p><%= @menu.description %></p>
 <p>価格: ¥<%= @menu.price %></p>
+
 <%= image_tag @menu.image if @menu.image.present? %>
-<%= link_to 'メニュー一覧に戻る', menus_path %>
+
+<h2>レビュー一覧</h2>
+<% if @menu.reviews.present? %>
+  <div class="list-group">
+    <% @menu.reviews.each do |review| %>
+      <div class="list-group-item">
+        <p><strong>評価:</strong> ⭐️ <%= review.rating %>/5</p>
+        <p><strong>レビュー:</strong> <%= review.content %></p>
+        <p><strong>投稿者:</strong> <%= review.user.name %></p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>まだレビューがありません。</p>
+<% end %>
+
+<%= link_to "レビューを書く", new_users_menu_review_path(@menu), class: "btn btn-primary mt-3" %>
+<%= link_to 'メニュー一覧へ戻る', menus_path, class: "btn btn-secondary" %>

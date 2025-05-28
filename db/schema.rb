@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_05_18_140824) do
+ActiveRecord::Schema.define(version: 2025_05_28_121159) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 2025_05_18_140824) do
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "menu_id", null: false
+    t.index ["menu_id"], name: "index_reviews_on_menu_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -120,5 +122,6 @@ ActiveRecord::Schema.define(version: 2025_05_18_140824) do
   add_foreign_key "reservation_details", "menus"
   add_foreign_key "reservation_details", "reservations"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "menus"
   add_foreign_key "reviews", "users"
 end

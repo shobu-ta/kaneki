@@ -1,13 +1,17 @@
-<h2>レビュー一覧</h2>
+<h2>あなたのレビュー一覧</h2>
 
-<% @reviews.each do |review| %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5>予約商品: <%= review.reservation.reservation_details.map(&:menu).map(&:name).join(", ") %></h5>
-      <p>評価: ⭐️ <%= review.rating %>/5</p>
-      <p><%= review.content %></p>
-      <%= link_to "編集", edit_users_review_path(review), class: "btn btn-warning btn-sm" %>
-      <%= link_to "削除", users_review_path(review), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+<% if @reviews.present? %>
+  <% @reviews.each do |review| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5>対象メニュー: <%= link_to review.menu.name, menu_path(review.menu) %></h5>
+        <p>評価: ⭐️ <%= review.rating %>/5</p>
+        <p>レビュー: <%= review.content %></p>
+        <%= link_to "編集", edit_users_menu_review_path(review.menu, review), class: "btn btn-warning btn-sm" %>
+        <%= link_to "削除", users_menu_review_path(review.menu, review), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+      </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  <p>まだレビューがありません。</p>
 <% end %>

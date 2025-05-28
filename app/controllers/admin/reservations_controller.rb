@@ -15,7 +15,7 @@ class Admin::ReservationsController < ApplicationController
   def update
     if @reservation.update(reservation_params)
       flash[:notice] = "予約情報を更新しました。"
-      redirect_to admin_reservation_path(@reservation)
+      redirect_to admin_reservation_path
     else
       flash[:alert] = "予約情報の更新に失敗しました。"
       render :edit
