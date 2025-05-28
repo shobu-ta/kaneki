@@ -1,0 +1,13 @@
+<h2>レビュー一覧</h2>
+
+<% @reviews.each do |review| %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5>予約商品: <%= review.reservation.reservation_details.map(&:menu).map(&:name).join(", ") %></h5>
+      <p>評価: ⭐️ <%= review.rating %>/5</p>
+      <p><%= review.content %></p>
+      <%= link_to "編集", edit_users_review_path(review), class: "btn btn-warning btn-sm" %>
+      <%= link_to "削除", users_review_path(review), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+    </div>
+  </div>
+<% end %>
