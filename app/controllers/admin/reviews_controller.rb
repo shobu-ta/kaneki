@@ -5,9 +5,14 @@ class Admin::ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
+  
   def destroy
-    @review = Review.find(params[:id])
-    @review.destroy
-    redirect_to admin_reviews_path, notice: "レビューを削除しました"
+    menu = Menu.find(params[:menu_id])
+    review = menu.reviews.find(params[:id])
+    review.destroy
+    flash[:notice] = "レビューを削除しました。"
+    redirect_to edit_admin_menu_path(menu)
   end
+  
+  
 end

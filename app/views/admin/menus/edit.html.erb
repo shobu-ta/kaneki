@@ -34,3 +34,35 @@
 <% end %>
 
 <%= link_to "メニュー一覧に戻る", admin_menus_path, class: "btn btn-secondary" %>
+
+<hr>
+
+<h3>ユーザーからのレビュー一覧</h3>
+
+<% if @menu.reviews.present? %>
+  <% @menu.reviews.each do |review| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <!-- 投稿者や評価内容の表示（必要に応じて項目を追加できます） -->
+        <p>
+          <strong>投稿者:</strong> <%= review.user.try(:username) || "匿名" %>
+        </p>
+        <p>
+          <strong>評価:</strong> ⭐ <%= review.rating %>/5
+        </p>
+        <p>
+          <strong>内容:</strong> <%= review.content %>
+        </p>
+        <!-- 管理者のみ削除リンクを表示 -->
+        <% if current_admin %>  
+          <%= link_to "削除", admin_menu_review_path(@menu, review),
+                      method: :delete,
+                      data: { confirm: "このレビューを削除してよろしいですか？" },
+                      class: "btn btn-danger btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>レビューはまだありません。</p>
+<% end %>

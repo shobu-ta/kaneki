@@ -9,6 +9,7 @@
         <p>レビュー: <%= review.content %></p>
         <%= link_to "編集", edit_users_menu_review_path(review.menu, review), class: "btn btn-warning btn-sm" %>
         <%= link_to "削除", users_menu_review_path(review.menu, review), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "本当に削除しますか？" } %>
+        
       </div>
     </div>
   <% end %>

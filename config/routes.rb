@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   # 管理者専用
   namespace :admin do
     root 'dashboard#index' # 管理者ダッシュボード
-    resources :menus, only: [:index, :new, :create, :edit, :update, :destroy] # 商品管理
+    resources :menus, only: [:index, :new, :create, :edit, :update, :destroy] do# 商品管理
+      resources :reviews, only: [:destroy]  # ネスト
+    end
+
     resources :users, only: [:index, :show, :destroy] # 会員管理
     resources :reviews, only: [:index, :destroy] # レビュー管理
     resources :reservations, only: [:index, :show, :edit, :update, :destroy] # 予約管理
