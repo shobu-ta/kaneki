@@ -53,9 +53,6 @@ class Users::ReservationsController < ApplicationController
   
   private
 
-  def reservation_params
-    params.permit(:name, :phone_number, menus: [])
-  end
   def reservations_params 
     params.require(:reservation).permit(:name, :total_price, :phone_number, reservation_details_attributes: [:id, :menu_id, :price, :quantity, :_destroy])
   end
