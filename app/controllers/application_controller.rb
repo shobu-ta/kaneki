@@ -10,11 +10,15 @@ class ApplicationController < ActionController::Base
 
   # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    users_mypage_path
+    if (resource.class.to_s == "Admin")
+      admin_root_path
+    else
+      users_mypage_path
+    end
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :avatar])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :avatar, :name, :phone_number])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :avatar, :name, :phone_number])
   end
 end

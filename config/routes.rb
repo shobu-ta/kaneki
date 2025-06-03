@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     get 'reservations/confirm'
   end
   # 管理者用の認証機能
-  devise_for :admin, path: 'admin', controllers: {
-    sessions: 'admin/sessions'
-  }
+  # devise_for :admins, controllers: {
+  #   sessions: "admins/sessions"
+  # }
+
+  devise_for :admin
 
   # 管理者専用
   namespace :admin do
@@ -42,7 +44,7 @@ Rails.application.routes.draw do
     # ----------------------------
     resources :reviews, only: [:index]
 
-    resources :reservations, only: [:new, :create, :index, :show] do
+    resources :reservations, only: [:new, :create, :index, :show, :destroy] do
       collection do
         get :confirm
         post :confirm  

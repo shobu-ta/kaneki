@@ -21,10 +21,10 @@
             <% end %>
           </td>
           <td><%= reservation.status %></td>
-          <td>¥<%= reservation.reservation_details.sum { |detail| detail.price } %></td>
+          <td>¥<%= reservation.reservation_details.sum(&:total_price) %></td>
           <td>
             <%= link_to "詳細", users_reservation_path(reservation), class: "btn btn-info" %>
-            <% if reservation.status == "受付済" %>
+            <% if reservation.status.blank? %>
               <%= link_to "キャンセル", users_reservation_path(reservation), method: :delete, class: "btn btn-danger", data: { confirm: "本当にキャンセルしますか？" } %>
             <% end %>
           </td>

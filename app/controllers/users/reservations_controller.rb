@@ -50,6 +50,12 @@ class Users::ReservationsController < ApplicationController
     @reservation = current_user.reservations.find(params[:id])
   end
   
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to users_reservations_path, notice: "予約をキャンセルしました。"
+  end
+
   
   private
 
