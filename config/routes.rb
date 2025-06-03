@@ -7,11 +7,7 @@ Rails.application.routes.draw do
     get 'reservations/show'
     get 'reservations/confirm'
   end
-  # 管理者用の認証機能
-  # devise_for :admins, controllers: {
-  #   sessions: "admins/sessions"
-  # }
-
+ 
   devise_for :admin
 
   # 管理者専用
