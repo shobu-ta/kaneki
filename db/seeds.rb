@@ -8,3 +8,15 @@
 Admin.find_or_create_by(email: "admin@admin") do |admin|
   admin.password = "adminadmin"
 end
+
+User.find_or_create_by!(email: "kaneki@example.com") do |user|
+  user.name = "カネキ"
+  user.username = "kaneki"
+  user.phone_number = "09012345678"
+  user.password = "securepassword"
+  user.password_confirmation = "securepassword"
+  user.avatar = ActiveStorage::Blob.create_and_upload!(
+    io: File.open("#{Rails.root}/db/fixtures/kaneki-avatar.jpg"),
+    filename: "kaneki-avatar.jpg"
+  )
+end

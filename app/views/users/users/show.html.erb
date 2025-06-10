@@ -7,9 +7,9 @@
 <div class="profile">
   <div class="profile-image">
     <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, class: "avatar" %>
+      <%= image_tag @user.avatar, class: "avatar" , width: 150, height: 180%>
     <% else %>
-      <%= image_tag "default-avatar.jpg", class: "avatar", width: 150, height: 150 %>
+      <%= image_tag "default-avatar.jpg", class: "avatar", width: 150, height: 180 %>
     <% end %>
   </div>
 
