@@ -1,6 +1,6 @@
 <h2>予約フォーム（会員専用）</h2>
 
-<%= form_with model: @reservation, url: users_reservations_confirm_path, method: :post, local: true do |f| %>
+<%= form_with model: @reservation, url: confirm_users_reservations_path, method: :post, local: true do |f| %>
 
   <h3>予約する商品</h3>
   <% if @weekly_menus.present? %>
