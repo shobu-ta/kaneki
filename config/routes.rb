@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :menus, only: [:index, :show]
   resources :blogs, only: [:index, :show]
 
-  # 管理者用の認証機能
+  # 管理者の認証機能
   devise_for :admin
 
   # 管理者専用
