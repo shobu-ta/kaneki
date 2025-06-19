@@ -12,7 +12,7 @@ class Users::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update!(user_params)
-      redirect_to users_mypage_edit_path, notice: "会員情報を更新しました"
+      redirect_to edit_users_mypage_path, notice: "会員情報を更新しました"
     else
       render :edit
     end
