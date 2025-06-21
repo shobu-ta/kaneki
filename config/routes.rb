@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   # 固定ページのルーティング
   root 'home#top'
-  get 'home/about'
   get 'weekly_menus', to: 'menus#weekly', as: 'weekly_menus'
 
   # 一般ユーザー用メニュー・ブログ閲覧
@@ -15,13 +14,13 @@ Rails.application.routes.draw do
   # 管理者専用
   namespace :admin do
     root 'dashboard#index'
-    resources :menus, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :menus, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:destroy]
     end
     resources :users, only: [:index, :show, :destroy]
     resources :reviews, only: [:index, :destroy]
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
-    resources :blogs, except: [:destroy] # index, show, new, create, edit, update
+    resources :blogs
   end
 
   # ユーザーの認証機能
