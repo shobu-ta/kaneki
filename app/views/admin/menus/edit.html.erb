@@ -3,7 +3,12 @@
 <%= form_with model: [:admin, @menu], local: true do |f| %>
   <div class="field">
     <%= f.label :name, "商品名" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "説明" %>
+    <%= f.text_area :description, class: "form-control" %>
   </div>
 
   <div class="field">

@@ -1,5 +1,5 @@
 class Admin::MenusController < ApplicationController
-    before_action :authenticate_admin! # 管理者のみアクセス可
+    before_action :authenticate_admin! 
 
     def index
       @menus = Menu.all
