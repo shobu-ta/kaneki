@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:destroy]
     end
     resources :users, only: [:index, :show, :destroy]
-    resources :reviews, only: [:index, :destroy]
+    resources :reviews, only: [:destroy]
     resources :reservations, only: [:index, :show, :edit, :update, :destroy]
     resources :blogs
   end
