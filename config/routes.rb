@@ -2,10 +2,13 @@ Rails.application.routes.draw do
 
   # 固定ページのルーティング
   root 'home#top'
-  get 'weekly_menus', to: 'menus#weekly', as: 'weekly_menus'
-
+ 
   # 一般ユーザー用メニュー・ブログ閲覧
-  resources :menus, only: [:index, :show]
+  resources :menus, only: [:index, :show] do
+    collection do
+      get :weekly
+    end
+  end
   resources :blogs, only: [:index, :show]
 
   # 管理者の認証機能
