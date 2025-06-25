@@ -1,2 +1,29 @@
 
 @import "bootstrap";
+
+
+/* 全画面共通 */
+.social i {
+  color: rgb(26, 151, 86);
+}
+
+/* タブレット横置き（1024px 以下） */
+@media screen and (max-width: 1024px) {
+  .social i {
+    color: green;
+  }
+}
+
+/* タブレット縦置き（768px 以下） */
+@media screen and (max-width: 768px) {
+  .social i {
+    color: red;
+  }
+}
+
+/* スマートフォン（425px 以下） */
+@media screen and (max-width: 425px) {
+  .social i {
+    color: blue;
+  }
+}
