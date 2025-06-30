@@ -1,5 +1,6 @@
 <h2>会員情報編集</h2>
-<%= flash[:notice] %> 
+<%= flash[:notice] %>
+
 <%= form_with model: @user, url: users_mypage_path, method: :patch do |f| %>
   <div class="field">
     <%= f.label :name, "氏名" %>
@@ -31,6 +32,9 @@
   </div>
 <% end %>
 
-<h3>退会</h3>
+<h3 class="mt-4">退会</h3>
 <p>退会すると、すべてのデータが削除されます。</p>
-<%= button_to "退会する", users_mypage_path, method: :delete, class: "btn btn-danger", data: { confirm: "本当に退会しますか？" } %>
+<%= button_to "退会する", users_mypage_path,
+              method: :delete,
+              class: "btn btn-danger",
+              data: { confirm: "本当に退会しますか？" } %>

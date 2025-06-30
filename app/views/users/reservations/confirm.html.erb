@@ -31,17 +31,17 @@
     <%= f.hidden_field :name %>
     <%= f.hidden_field :phone_number %>
     <%= f.hidden_field :total_price %>
-    <% pp @reservation.reservation_details %>
-    <%= f.fields_for :reservation_details do |reservation_detail| %>
-    <%= reservation_detail.hidden_field :menu_id %>
-    
-    <%= reservation_detail.hidden_field :quantity %>
-    <%= reservation_detail.hidden_field :price %>
 
-  <% end %>
+    <%= f.fields_for :reservation_details do |reservation_detail| %>
+      <%= reservation_detail.hidden_field :menu_id %>
+      <%= reservation_detail.hidden_field :quantity %>
+      <%= reservation_detail.hidden_field :price %>
+    <% end %>
 
     <div class="actions">
-      <%= f.submit "予約確定", class: "btn btn-success", data: { confirm: "ご注文内容にお間違いないでしょうか？" } %>
+      <%= f.submit "予約確定",
+                   class: "btn btn-success",
+                   data: { confirm: "ご注文内容にお間違いないでしょうか？" } %>
     </div>
   <% end %>
 <% else %>

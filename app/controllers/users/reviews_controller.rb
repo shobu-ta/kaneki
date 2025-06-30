@@ -2,12 +2,15 @@ class Users::ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_menu, only: [:new, :create, :edit, :update, :destroy]
 
+  def index
+    @reviews = current_user.reviews.includes(:menu)
+  end
+
   def new
     @review = @menu.reviews.new
   end
 
   def create
-    # 対象メニューに紐づいたレビューを生成
     @review = @menu.reviews.new(review_params)
     @review.user = current_user
 
@@ -38,14 +41,6 @@ class Users::ReviewsController < ApplicationController
     @review.destroy
     flash[:notice] = "レビューが削除されました！"
     redirect_to users_reviews_path
-  end
-
-  def index
-    @reviews = current_user.reviews.includes(:menu)
-  end
-
-  def show
-    @review = Review.find(params[:id])
   end
 
   private

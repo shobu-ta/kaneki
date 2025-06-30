@@ -1,9 +1,15 @@
 <h1 class="text-center fw-bold mb-4">メニュー一覧</h1>
 
-<div class="row row-cols-5 g-4">
+<div class="row 
+            row-cols-1        
+            row-cols-sm-2     
+            row-cols-md-3     
+            row-cols-lg-4     
+            row-cols-xl-5     
+            g-4">
   <% @menus.each do |menu| %>
     <div class="col">
-      <div class="card shadow-sm h-100">
+      <div class="card h-100 bg-white shadow-lg">
         <% if menu.image.attached? %>
           <%= image_tag menu.image, class: "card-img-top img-fluid rounded" %>
         <% else %>
@@ -14,8 +20,12 @@
           <h2 class="card-title">
             <%= link_to menu.name, menu_path(menu), class: "text-decoration-none text-dark" %>
           </h2>
-          <p class="card-text flex-grow-1"><%= menu.description %></p>
-          <p class="text-primary fw-bold">価格: ¥<%= menu.price %></p>
+          <p class="card-text flex-grow-1">
+            <%= menu.description %>
+          </p>
+          <p class="text-primary fw-bold">
+            価格: ¥<%= menu.price %>
+          </p>
           <%= link_to "詳細を見る", menu_path(menu), class: "btn btn-success mt-2" %>
         </div>
       </div>

@@ -4,10 +4,9 @@
 
 <%= image_tag @menu.image, class: "img-fluid", alt: @menu.name, style: "max-width: 150px;" if @menu.image.present? %>
 
-
-<h2>レビュー一覧</h2>
+<h2 class="mt-4">レビュー一覧</h2>
 <% if @menu.reviews.present? %>
-  <div class="list-group">
+  <div class="list-group mb-4">
     <% @menu.reviews.each do |review| %>
       <div class="list-group-item">
         <p><strong>評価:</strong> ⭐️ <%= review.rating %>/5</p>
@@ -20,7 +19,14 @@
   <p>まだレビューがありません。</p>
 <% end %>
 
-<% if user_signed_in? %>
-  <%= link_to "レビューを書く", new_users_menu_review_path(@menu), class: "btn btn-primary mt-3" %>
-<% end %>
-<%= link_to 'メニュー一覧へ戻る', menus_path, class: "btn btn-secondary" %>
+<div class="d-flex align-items-center gap-2 mt-3">
+  <% if user_signed_in? %>
+    <%= link_to "レビューを書く",
+                new_users_menu_review_path(@menu),
+                class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to "メニュー一覧へ戻る",
+              menus_path,
+              class: "btn btn-secondary" %>
+</div>
