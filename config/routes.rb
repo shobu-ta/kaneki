@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  # ゲストユーザーログイン
+  post '/homes/guest_sign_in', to: 'home#guest_sign_in'
 
   # 固定ページのルーティング
   root 'home#top'
