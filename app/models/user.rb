@@ -3,7 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  
   has_one_attached :avatar
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy 

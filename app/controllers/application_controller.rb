@@ -3,12 +3,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # 新規登録後のリダイレクト先
   def after_sign_up_path_for(resource)
     users_mypage_path
   end
 
-  # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
     if (resource.class.to_s == "Admin")
       admin_root_path

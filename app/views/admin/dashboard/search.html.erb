@@ -1,0 +1,55 @@
+<h1>検索結果</h1>
+<p>
+  対象: <strong><%= @scope == 'user' ? '会員' : 'メニュー' %></strong>,
+  方法: <strong><%= @mode == 'exact' ? '完全一致' : '部分一致' %></strong>,
+  キーワード: <strong><%= @q.presence || '-' %></strong>
+</p>
+
+<% if @results.any? %>
+  <% if @scope == 'user' %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>氏名</th><th>メール</th><th>電話</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |u| %>
+          <tr>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.phone_number %></td>
+            <td>
+              <%= link_to '詳細', admin_user_path(u), class: 'btn btn-sm btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% else %> <%# menu の場合 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th><th>価格</th><th>今週メニュー</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |m| %>
+          <tr>
+            <td><%= m.name %></td>
+            <td>¥<%= m.price %></td>
+            <td><%= m.weekly_menu? ? '〇' : 'ー' %></td>
+            <td>
+              <%= link_to '編集', edit_admin_menu_path(m), class: 'btn btn-sm btn-primary' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>「<%= @q %>」にマッチする結果が見つかりませんでした。</p>
+<% end %>
+
+<%= link_to "ダッシュボードに戻る", admin_root_path, class: "btn btn-secondary mt-3" %>

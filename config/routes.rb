@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   # 管理者専用
   namespace :admin do
     root 'dashboard#index'
+
+    get 'search', to: 'dashboard#search', as: :search
+
+
     resources :menus, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :reviews, only: [:destroy]
     end

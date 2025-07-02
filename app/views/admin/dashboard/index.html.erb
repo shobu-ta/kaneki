@@ -1,13 +1,33 @@
 <h1>管理者ダッシュボード</h1>
-<p>ここからメニューを管理できます。</p>
+
+<%= form_with url: admin_search_path, method: :get, local: true, class: "row g-2 mb-4" do |f| %>
+  <div class="col-auto">
+    <%= select_tag :scope,
+                   options_for_select([['会員', 'user'], ['メニュー', 'menu']], params[:scope]),
+                   prompt: '検索対象',
+                   class: 'form-select' %>
+  </div>
+
+  <div class="col-auto">
+    <%= select_tag :mode,
+                   options_for_select([['部分一致', 'partial'], ['完全一致', 'exact']], params[:mode]),
+                   prompt: '検索方法',
+                   class: 'form-select' %>
+  </div>
+
+  <div class="col-auto flex-grow-1">
+    <%= text_field_tag :q, params[:q], placeholder: "キーワードを入力", class: 'form-control' %>
+  </div>
+
+  <div class="col-auto">
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 <div class="list-group">
-  <%= link_to '商品一覧', admin_menus_path, class: "list-group-item list-group-item-action" %>
+  <%= link_to 'メニュー一覧', admin_menus_path, class: "list-group-item list-group-item-action" %>
   <%= link_to '会員一覧', admin_users_path, class: "list-group-item list-group-item-action" %>
   <%= link_to '予約管理', admin_reservations_path, class: "list-group-item list-group-item-action" %>
   <%= link_to '管理者ブログ', admin_blogs_path, class: "list-group-item list-group-item-action" %>
   <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "list-group-item list-group-item-action" %>
 </div>
-
-
-
