@@ -1,0 +1,16 @@
+<h2><%= @blog.title %></h2>
+<div class="blog-content fs-5 mb-5">
+  <%= simple_format(@blog.content) %>
+</div>
+
+
+<h3>添付画像</h3>
+<% if @blog.images.attached? %>
+  <div class="blog-images">
+    <% @blog.images.each do |image| %>
+      <%= image_tag image, style: "max-width: 300px; height: auto;" %>
+    <% end %>
+  </div>
+<% else %>
+  <p>画像はありません</p>
+<% end %>
