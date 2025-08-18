@@ -277,7 +277,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.7)
   jquery-rails
-  listen (~> 3.3)
+  listen (~> 3.7)
   mysql2
   net-imap
   net-pop
