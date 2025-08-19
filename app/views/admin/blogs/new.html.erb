@@ -1,5 +1,16 @@
 <h2>新規ブログ作成</h2>
 
+<% if @blog.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>入力に誤りがあります: </h4>
+    <ul>
+      <% @blog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: [:admin, @blog], local: true do |f| %>
   <div class="field">
     <%= f.label :title, "タイトル" %>

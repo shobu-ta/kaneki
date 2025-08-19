@@ -2,7 +2,7 @@
 
 <% if @menu.errors.any? %>
   <div class="alert alert-danger">
-    <h4>入力に誤りがあります</h4>
+    <h4>入力に誤りがあります: </h4>
     <ul>
       <% @menu.errors.full_messages.each do |message| %>
         <li><%= message %></li>

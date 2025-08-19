@@ -2,12 +2,18 @@ ja:
   activerecord:
     models:
       menu: メニュー
+      blog: ブログ
     attributes:
       menu:
         name: 商品名
         description: 説明
         price: 価格
+      blog:
+        title: タイトル
+        content: 内容
+        
   errors:
     messages:
       blank: "を入力してください"
       not_a_number: "は数値で入力してください"
+
