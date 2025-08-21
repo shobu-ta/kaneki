@@ -11,12 +11,18 @@ ja:
       blog:
         title: タイトル
         content: 内容
-        
+      user:
+        email: メールアドレス
+        password: パスワード
+
+ 
   errors:
     messages:
       blank: "を入力してください"
       not_a_number: "は数値で入力してください"
-      
+      not_saved: "保存できませんでした。以下のエラーをご確認ください。"
+      invalid: "は正しい形式で入力してください"
+
   devise:
       failure:
         user:
