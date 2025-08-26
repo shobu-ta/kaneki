@@ -71,3 +71,5 @@ gem "net-imap"
 
 gem 'rails-i18n'
 
+gem 'kaminari'
+

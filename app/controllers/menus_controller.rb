@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   def index
-    @menus = Menu.all
+    @menus = Menu.page(params[:page]).per(5)
   end
 
   def show
